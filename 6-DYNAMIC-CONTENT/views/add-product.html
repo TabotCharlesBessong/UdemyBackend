@@ -24,8 +24,21 @@
     <main>
         <form class="product-form" action="/admin/add-product" method="POST">
             <div class="form-control">
-                <label for="title">Title</label>
+                <label for="title">Product Title</label>
                 <input type="text" name="title" id="title">
+            </div>
+            <div class="form-control">
+                <label for="title">Product Price</label>
+                <input type="text" name="price" id="price">
+            </div>
+
+            <div class="form-control">
+                <label for="title">Product Description</label>
+                <input type="text" name="desc" id="desc">
+            </div>
+            <div class="form-control">
+                <label for="title">Product Image</label>
+                <input type="file" name="img" id="img">
             </div>
 
             <button class="btn" type="submit">Add Product</button>
