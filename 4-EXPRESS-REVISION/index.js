@@ -1,24 +1,24 @@
 import  express from  'express'
 import  bodyParser  from 'body-parser';
+
+import adminRoutes from './routes/admin.js'
+import shopRoutes from './routes/shop.js'
+
 const port = process.env.PORT  || 5000
 const app = express();
 
 // app.use(bodyParser.json({limit:"30mb",extended:true}))
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use('/add-product', (req, res, next) => {
-  res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
-});
+app.use('/admin',adminRoutes)
+app.use(shopRoutes)
 
-app.post('/product', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/');
-});
+app.use((req,res,next)=>{
+  res.status(404).send('<h1>Page not found</h1>')
+})
 
-app.use('/', (req, res, next) => {
-  res.send('<h1>Hello from Express!</h1>');
-});
+
 
 app.listen(port,()=>{
-  console.log(`The server is listening on port ${port}`);
+  console.log(`The server is listening on port ${port}....`);
 });
