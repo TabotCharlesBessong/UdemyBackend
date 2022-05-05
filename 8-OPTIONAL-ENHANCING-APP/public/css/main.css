@@ -101,6 +101,16 @@ main {
   cursor: pointer;
 }
 
+.btn.delete{
+  color: #941818;
+  background: #fff;
+  border: 1px solid #941818;
+}
+.btn.delete:hover{
+  background: #941818;
+  color: #fff;
+}
+
 .btn:hover,
 .btn:active {
   background-color: #00695c;
