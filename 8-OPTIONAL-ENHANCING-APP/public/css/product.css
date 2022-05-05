@@ -7,8 +7,6 @@
 .product-item {
     width: 20rem;
     max-width: 95%;
-    margin-bottom: 1rem;
-    box-shadow: -14px 12px 4px 0 rgba(0, 0, 0, 0.23);
 }
 
 .product__title {
