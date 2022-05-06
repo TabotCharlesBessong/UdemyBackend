@@ -26,6 +26,11 @@ form {
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+.centered{
+  text-align: center;
 }
 
 .main-header__nav {
@@ -185,6 +190,18 @@ form {
   background: white;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.btn.delete{
+  color: #750d0d;
+  background: #fff;
+  border: 1px solid #750d0d;
+}
+
+.btn.delete:hover{
+  background: #750d0d;
+  color: #fff;
+  border: none;
 }
 
 .btn:hover,
