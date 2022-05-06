@@ -9,7 +9,7 @@ const p = path.join(
 );
 
 module.exports = class Cart {
-  static addProduct(id , prodcutPrice){
+  static addProduct(id , productPrice){
     // fetch all cart
     fs.readFile(p , (err,fileContent)=>{
       let cart = {prodcuts:[],totalPrice:0}
@@ -30,7 +30,8 @@ module.exports = class Cart {
         updatedProduct = {id:id , qty : 1}
         cart.prodcuts = [...cart.prodcuts, updatedProduct]
       }
-      cart.totalPrice = cart.totalPrice + +prodcutPrice
+      cart.totalPrice =  cart.totalPrice + +productPrice
+      // cart.totalPrice =  parseFloat(cart.totalPrice).toFixed(2)
       fs.writeFile(p, JSON.stringify(cart), err =>{
         console.log(err);
       } )
