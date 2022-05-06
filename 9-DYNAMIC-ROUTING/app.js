@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 
 const app = express();
+const port = 5000
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -21,4 +22,6 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000);
+app.listen(port,()=>{
+  console.log(`Our server is up and running on port number ${port}... `);
+})
