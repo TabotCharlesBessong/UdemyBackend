@@ -32,9 +32,7 @@
                                             Details
                                         </button>
                                     </a>
-                                    <form action="/add-to-cart" method="POST">
-                                        <button class="btn">Add to Cart</button>
-                                    </form>
+                                    <%- include('../includes/add-to-cart.ejs' , {product:product})  %>
                                 </div>
                             </article>
                             <% } %>
