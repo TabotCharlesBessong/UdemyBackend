@@ -12,9 +12,9 @@ const port = process.env.PORT || 5000
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-// const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 // const shopRoutes = require('./routes/shop');
-const mongoConnect = require('./util/database')
+const mongoConnect = require('./util/database').mongoConnect
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -26,16 +26,19 @@ app.use((req, res, next) => {
   //     next();
   //   })
   //   .catch(err => console.log(err));
+  next()
 });
 
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 // app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect((client)=>{
-  console.log(client);
-  app.listen(port)
+mongoConnect(()=>{
+  console.log();
+  app.listen(port,()=>{
+    console.log(`The server is running on port ${port}...`);
+  })
 })
 
 
