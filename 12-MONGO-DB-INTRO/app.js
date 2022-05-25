@@ -5,9 +5,10 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
 const mongoConnect = require('./util/database').mongoConnect;
+const User = require('./models/user');
 
 const app = express();
-const port = 5000
+const port = process.env.PORT  || 5000 
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -19,13 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  // User.findById(1)
-  //   .then(user => {
-  //     req.user = user;
-  //     next();
-  //   })
-  //   .catch(err => console.log(err));
-  next();
+  User.findById('')
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
@@ -35,6 +35,6 @@ app.use(errorController.get404);
 
 mongoConnect(() => {
   app.listen(port,()=>{
-    console.log(`Our server is running on port number ${port}...`);
+    console.log(`Mon serveur execute sur le port numero ${port}... `);
   });
 });
