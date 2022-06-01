@@ -1,9 +1,8 @@
 const Product = require('../models/product');
 
 exports.getProducts = (req, res, next) => {
-  Product.find()
+  Product.fetchAll()
     .then(products => {
-      console.log(products)
       res.render('shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
@@ -17,7 +16,15 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-
+  // Product.findAll({ where: { id: prodId } })
+  //   .then(products => {
+  //     res.render('shop/product-detail', {
+  //       product: products[0],
+  //       pageTitle: products[0].title,
+  //       path: '/products'
+  //     });
+  //   })
+  //   .catch(err => console.log(err));
   Product.findById(prodId)
     .then(product => {
       res.render('shop/product-detail', {
@@ -30,7 +37,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  Product.find()
+  Product.fetchAll()
     .then(products => {
       res.render('shop/index', {
         prods: products,

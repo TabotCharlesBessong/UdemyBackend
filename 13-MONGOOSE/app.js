@@ -20,12 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('628f9c41f9394a489cf9c1b3')
-    .then(user => {
-      req.user = user
-      next();
-    })
-    .catch(err => console.log(err));
+  // User.findById('628f9c41f9394a489cf9c1b3')
+  //   .then(user => {
+  //     req.user = user
+  //     next();
+  //   })
+  //   .catch(err => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
@@ -38,17 +38,17 @@ mongoose
     'mongodb+srv://tabotcharlesbessong:node-complete@cluster0.azbbe.mongodb.net/node-complete?retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true}
   )
   .then(result => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          name: 'Tabot Charles Bessong',
-          email: 'ebezebeatrice@gmail.com',
-          cart:{
-            items:[]
-           }
-        })
-      user.save()
-      }})
+    // User.findOne().then(user => {
+    //   if (!user) {
+    //     const user = new User({
+    //       name: 'Tabot Charles Bessong',
+    //       email: 'ebezebeatrice@gmail.com',
+    //       cart:{
+    //         items:[]
+    //        }
+    //     })
+    //   user.save()
+    //   }})
     app.listen(port,()=>{
     console.log(`Mon serveur execute sur le port numero ${port}... `);
   });
