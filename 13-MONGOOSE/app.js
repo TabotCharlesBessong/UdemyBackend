@@ -34,7 +34,7 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoose
-  .connect(process.env.MONGO_URL,{useUnifiedTopology: true, useNewUrlParser: true}
+  .connect( 'mongodb+srv://tabotcharlesbessong:node-complete@cluster0.azbbe.mongodb.net/node-complete?retryWrites=true&w=majority',{useUnifiedTopology: true, useNewUrlParser: true}
   )
   .then(result => {
     // User.findOne().then(user => {
