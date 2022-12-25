@@ -1,4 +1,5 @@
 const path = require('path');
+const dotenv = require('dotenv')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,6 +9,8 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const app = express();
+dotenv.config()
+// mongoose.set("strictQuery", false);
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -33,9 +36,7 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoose
-  .connect(
-    'mongodb+srv://charles-junior:junior2002@cluster0.pazzesj.mongodb.net/test?retryWrites=true'
-  )
+  .connect(process.env.MONGO_URL)
   .then(result => {
     app.listen(3000);
   })
