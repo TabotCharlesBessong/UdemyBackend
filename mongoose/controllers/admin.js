@@ -1,12 +1,12 @@
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render("admin/edit-product", {
-		pageTitle: "Add Product",
-		path: "/admin/add-product",
-		editing: false,
-		isAuthenticated: req.isLoggedIn,
-	});
+  res.render('admin/edit-product', {
+    pageTitle: 'Add Product',
+    path: '/admin/add-product',
+    editing: false,
+    isAuthenticated: req.session.isLoggedIn
+  });
 };
 
 exports.postAddProduct = (req, res, next) => {
@@ -44,13 +44,13 @@ exports.getEditProduct = (req, res, next) => {
       if (!product) {
         return res.redirect('/');
       }
-      res.render("admin/edit-product", {
-				pageTitle: "Edit Product",
-				path: "/admin/edit-product",
-				editing: editMode,
-				product: product,
-				isAuthenticated: req.isLoggedIn,
-			});
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        editing: editMode,
+        product: product,
+        isAuthenticated: req.session.isLoggedIn
+      });
     })
     .catch(err => console.log(err));
 };
@@ -87,7 +87,7 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: 'Admin Products',
         path: '/admin/products',
-        isAuthenticated:req.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn
       });
     })
     .catch(err => console.log(err));
@@ -95,7 +95,7 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findByIdAndRemove(prodId)
+  Product. AndRemove(prodId)
     .then(() => {
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');
