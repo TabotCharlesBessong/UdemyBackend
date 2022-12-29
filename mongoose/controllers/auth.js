@@ -1,14 +1,15 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs')
 const nodemailer = require('nodemailer')
-const sendGridTransport = require('nodemailer-sendgrid-transport')
+const sendGridTransport = require("nodemailer-sendgrid-transport");
+const dotenv = require('dotenv')
 
+dotenv.config()
 
 const transporter = nodemailer.createTransport(
 	sendGridTransport({
 		auth: {
-			api_key:
-				"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",
+			api_key: process.env.API_MAIL_KEY,
 		},
 	})
 );
@@ -89,7 +90,7 @@ exports.postSignup = (req, res, next) => {
 				res.redirect("/login");
         return transporter.sendMail({
           to: email,
-          from:'ebezebeatrice@gmail.com',
+          from:process.env.SENDER_MAIL,
           subject:"Successfully created account",
           html:"<h1>You have your account now</h1>"
         })
